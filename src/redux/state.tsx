@@ -31,19 +31,11 @@ export type StatePropsType = {
 
 export type ActionsTypes = AddPostActionType | ChangeNewTextType
 
-export type AddPostActionType = {
-    type: 'ADD-POST'
-}
-
-export type ChangeNewTextType = {
-    type: 'CHANGE-NEW-TEXT'
-    newText: string
-}
+type AddPostActionType = ReturnType<typeof addPostActionCreator>
+type ChangeNewTextType = ReturnType<typeof updateNewPostTextActionCreator>
 
 export type  StoreType = {
     _state: StatePropsType
-    // changeNewText: (newText: string) => void
-    // addPost: () => void
     _onChange: () => void
     subscribe: (callback: () => void) => void
     getState: () => StatePropsType
@@ -119,6 +111,19 @@ const store: StoreType = {
             this._onChange()
         }
     }
+}
+
+export const addPostActionCreator = () => {
+    return {
+        type: "ADD-POST"
+    } as const
+}
+
+export const updateNewPostTextActionCreator = (newText: string)=> {
+    return {
+        type: "CHANGE-NEW-TEXT",
+        newText: newText
+    } as const
 }
 
 export default store
