@@ -1,8 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';
-const CHANGE_NEW_MESSAGE_BODY = 'CHANGE_NEW_MESSAGE_BODY';
-const SEND_MESSAGE = 'SEND_MESSAGE';
-
+import {AddPostActionType, ChangeNewTextType, profileReducer} from "./profile-reducer";
+import {changeNewMessageBodyType, dialogsReducer, sendMessageType} from "./dialogs-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
 
 type MessagesPropsType = {
     id: string
@@ -14,7 +12,7 @@ type DialogsPropsType = {
     name: string
 }
 
-type PostsPropsType = {
+export type PostsPropsType = {
     id: number
     message: string
     likesCount: string
@@ -34,16 +32,10 @@ export type DialogsPageType = {
 export type StatePropsType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-
+    sidebar: any
 }
 
 export type ActionsTypes = AddPostActionType | ChangeNewTextType | changeNewMessageBodyType | sendMessageType
-
-type AddPostActionType = ReturnType<typeof addPostActionCreator>
-type ChangeNewTextType = ReturnType<typeof updateNewPostTextActionCreator>
-type changeNewMessageBodyType = ReturnType<typeof updateNewMessageBodyActionCreator>
-type sendMessageType = ReturnType<typeof sendMessageActionCreator>
-
 
 export type  StoreType = {
     _state: StatePropsType
@@ -52,7 +44,6 @@ export type  StoreType = {
     getState: () => StatePropsType
     dispatch: (action: ActionsTypes) => void
 }
-
 
 const store: StoreType = {
     _state: {
@@ -81,24 +72,8 @@ const store: StoreType = {
             ],
             newMessageBody: '',
         },
-        // sitebar: {
-        //
-        // }
+        sidebar: {}
     },
-    // changeNewText(newText: string) {
-    //     this._state.profilePage.newPostText = newText
-    //     this._onChange()
-    // },
-    // addPost() {
-    //     const newPost: PostsPropsType = {
-    //         id: new Date().getTime(),
-    //         message: this._state.profilePage.newPostText,
-    //         likesCount: '0'
-    //     }
-    //     this._state.profilePage.posts.push(newPost)
-    //     this._state.profilePage.newPostText = ''
-    //     this._onChange()
-    // },
     _onChange() {
         console.log('state was ...')
     },
@@ -109,54 +84,12 @@ const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            const newPost: PostsPropsType = {
-                id: new Date().getTime(),
-                message: this._state.profilePage.newPostText,
-                likesCount: '0'
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._onChange()
-        } else if (action.type === CHANGE_NEW_TEXT) {
-            this._state.profilePage.newPostText = action.newText
-            this._onChange()
-        } else if (action.type === CHANGE_NEW_MESSAGE_BODY) {
-            this._state.dialogsPage.newMessageBody = action.body
-            this._onChange()
-        } else if (action.type === SEND_MESSAGE) {
-            let body = this._state.dialogsPage.newMessageBody
-            this._state.dialogsPage.newMessageBody = ''
-            this._state.dialogsPage.messages.push({id: '6', message: body},)
-            this._onChange()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+        this._onChange()
     }
-}
-
-export const addPostActionCreator = () => {
-    return {
-        type: "ADD-POST"
-    } as const
-}
-
-export const updateNewPostTextActionCreator = (newText: string) => {
-    return {
-        type: "CHANGE-NEW-TEXT",
-        newText: newText
-    } as const
-}
-
-export const updateNewMessageBodyActionCreator = (body: string) => {
-    return {
-        type: 'CHANGE_NEW_MESSAGE_BODY',
-        body: body
-    } as const
-}
-
-export const sendMessageActionCreator = () => {
-    return {
-        type: 'SEND_MESSAGE',
-    } as const
 }
 
 export default store
