@@ -1,3 +1,9 @@
+const ADD_POST = 'ADD-POST';
+const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';
+const CHANGE_NEW_MESSAGE_BODY = 'CHANGE_NEW_MESSAGE_BODY';
+const SEND_MESSAGE = 'SEND_MESSAGE';
+
+
 type MessagesPropsType = {
     id: string
     message: string
@@ -22,17 +28,22 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsPropsType>
     messages: Array<MessagesPropsType>
+    newMessageBody: string
 }
 
 export type StatePropsType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+
 }
 
-export type ActionsTypes = AddPostActionType | ChangeNewTextType
+export type ActionsTypes = AddPostActionType | ChangeNewTextType | changeNewMessageBodyType | sendMessageType
 
 type AddPostActionType = ReturnType<typeof addPostActionCreator>
 type ChangeNewTextType = ReturnType<typeof updateNewPostTextActionCreator>
+type changeNewMessageBodyType = ReturnType<typeof updateNewMessageBodyActionCreator>
+type sendMessageType = ReturnType<typeof sendMessageActionCreator>
+
 
 export type  StoreType = {
     _state: StatePropsType
@@ -68,6 +79,7 @@ const store: StoreType = {
                 {id: '4', message: 'yo'},
                 {id: '5', message: 'Hi'},
             ],
+            newMessageBody: '',
         },
         // sitebar: {
         //
@@ -97,7 +109,7 @@ const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             const newPost: PostsPropsType = {
                 id: new Date().getTime(),
                 message: this._state.profilePage.newPostText,
@@ -106,8 +118,16 @@ const store: StoreType = {
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newPostText = ''
             this._onChange()
-        } else if (action.type === 'CHANGE-NEW-TEXT') {
+        } else if (action.type === CHANGE_NEW_TEXT) {
             this._state.profilePage.newPostText = action.newText
+            this._onChange()
+        } else if (action.type === CHANGE_NEW_MESSAGE_BODY) {
+            this._state.dialogsPage.newMessageBody = action.body
+            this._onChange()
+        } else if (action.type === SEND_MESSAGE) {
+            let body = this._state.dialogsPage.newMessageBody
+            this._state.dialogsPage.newMessageBody = ''
+            this._state.dialogsPage.messages.push({id: '6', message: body},)
             this._onChange()
         }
     }
@@ -119,10 +139,23 @@ export const addPostActionCreator = () => {
     } as const
 }
 
-export const updateNewPostTextActionCreator = (newText: string)=> {
+export const updateNewPostTextActionCreator = (newText: string) => {
     return {
         type: "CHANGE-NEW-TEXT",
         newText: newText
+    } as const
+}
+
+export const updateNewMessageBodyActionCreator = (body: string) => {
+    return {
+        type: 'CHANGE_NEW_MESSAGE_BODY',
+        body: body
+    } as const
+}
+
+export const sendMessageActionCreator = () => {
+    return {
+        type: 'SEND_MESSAGE',
     } as const
 }
 
