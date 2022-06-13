@@ -1,3 +1,7 @@
+import {AddPostActionType, ChangeNewTextType, profileReducer} from "./profile-reducer";
+import {changeNewMessageBodyType, dialogsReducer, sendMessageType} from "./dialogs-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
+
 type MessagesPropsType = {
     id: string
     message: string
@@ -8,7 +12,7 @@ type DialogsPropsType = {
     name: string
 }
 
-type PostsPropsType = {
+export type PostsPropsType = {
     id: number
     message: string
     likesCount: string
@@ -22,34 +26,24 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsPropsType>
     messages: Array<MessagesPropsType>
+    newMessageBody: string
 }
 
 export type StatePropsType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+    sidebar: any
 }
 
-export type ActionsTypes = AddPostActionType | ChangeNewTextType
-
-export type AddPostActionType = {
-    type: 'ADD-POST'
-}
-
-export type ChangeNewTextType = {
-    type: 'CHANGE-NEW-TEXT'
-    newText: string
-}
+export type ActionsTypes = AddPostActionType | ChangeNewTextType | changeNewMessageBodyType | sendMessageType
 
 export type  StoreType = {
     _state: StatePropsType
-    // changeNewText: (newText: string) => void
-    // addPost: () => void
     _onChange: () => void
     subscribe: (callback: () => void) => void
     getState: () => StatePropsType
     dispatch: (action: ActionsTypes) => void
 }
-
 
 const store: StoreType = {
     _state: {
@@ -76,25 +70,10 @@ const store: StoreType = {
                 {id: '4', message: 'yo'},
                 {id: '5', message: 'Hi'},
             ],
+            newMessageBody: '',
         },
-        // sitebar: {
-        //
-        // }
+        sidebar: {}
     },
-    // changeNewText(newText: string) {
-    //     this._state.profilePage.newPostText = newText
-    //     this._onChange()
-    // },
-    // addPost() {
-    //     const newPost: PostsPropsType = {
-    //         id: new Date().getTime(),
-    //         message: this._state.profilePage.newPostText,
-    //         likesCount: '0'
-    //     }
-    //     this._state.profilePage.posts.push(newPost)
-    //     this._state.profilePage.newPostText = ''
-    //     this._onChange()
-    // },
     _onChange() {
         console.log('state was ...')
     },
@@ -105,19 +84,11 @@ const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostsPropsType = {
-                id: new Date().getTime(),
-                message: this._state.profilePage.newPostText,
-                likesCount: '0'
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._onChange()
-        } else if (action.type === 'CHANGE-NEW-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._onChange()
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+        this._onChange()
     }
 }
 
