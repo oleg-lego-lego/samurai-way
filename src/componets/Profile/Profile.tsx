@@ -1,8 +1,8 @@
 import React from 'react';
-import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ActionsTypes} from "../../redux/store";
 import {RootStoreType} from "../../redux/redux-store";
+import {MyPostsContainer} from "./MyPosts/Post/MyPostsContainer";
 
 type ProfileTypeProps = {
     store: RootStoreType
@@ -13,7 +13,7 @@ export const Profile = (props: ProfileTypeProps) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts store={props.store} dispatch={props.dispatch}/>
+            <MyPostsContainer store={props.store} dispatch={props.dispatch}/>
         </div>
     )
 }
