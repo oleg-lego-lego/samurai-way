@@ -3,10 +3,10 @@ import './App.css';
 import {Header} from "./componets/Header/Header";
 import {Navbar} from "./componets/Navbar/Navbar";
 import {Profile} from "./componets/Profile/Profile";
-import {Dialogs} from "./componets/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
 import {ActionsTypes} from "./redux/store";
 import {RootStoreType} from "./redux/redux-store";
+import {DialogsContainer} from "./componets/Dialogs/DialogsContainer";
 
 
 type AppTypeProps = {
@@ -21,9 +21,8 @@ const App = (props: AppTypeProps) => {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path={'/dialogs'} render={() => <Dialogs dialogsPage={props.store.dialogsPage}
-                                                                    profilePage={props.store.profilePage}
-                                                                    dispatch={props.dispatch}/>}/>
+                    <Route path={'/dialogs'}
+                           render={() => <DialogsContainer store={props.store} dispatch={props.dispatch}/>}/>
                     <Route path={'/profile'}
                            render={() => <Profile store={props.store} dispatch={props.dispatch}/>}/>
                 </div>
