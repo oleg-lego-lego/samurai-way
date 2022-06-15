@@ -1,10 +1,11 @@
 import React from 'react';
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ActionsTypes, StatePropsType} from "../../redux/store";
+import {ActionsTypes} from "../../redux/store";
+import {RootStoreType} from "../../redux/redux-store";
 
 type ProfileTypeProps = {
-    store: StatePropsType
+    store: RootStoreType
     dispatch: (action: ActionsTypes) => void
 }
 
