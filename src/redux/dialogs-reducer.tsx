@@ -8,9 +8,9 @@ export type sendMessageType = ReturnType<typeof sendMessageActionCreator>
 
 let initialStore = {
         dialogs: [
-            {id: '1', name: 'Dimych'},
+            {id: '1', name: 'Oleg'},
             {id: '2', name: 'Andrew'},
-            {id: '3', name: 'Sveta'},
+            {id: '3', name: 'Svetlana'},
             {id: '4', name: 'Sasha'},
             {id: '5', name: 'Viktor'},
             {id: '6', name: 'Valera'},

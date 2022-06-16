@@ -3,7 +3,6 @@ import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
 import {PostsPropsType} from "../../../redux/store";
 
-
 type MyPostsTypeProps = {
     updateNewPostText: (newText: string) => void
     addPost: () => void
@@ -22,7 +21,6 @@ export const MyPosts = (props: MyPostsTypeProps) => {
         let newText = e.currentTarget.value
         props.updateNewPostText(newText)
     }
-
 
     return (
         <div className={s.postsBlock}>

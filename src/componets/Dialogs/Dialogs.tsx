@@ -3,7 +3,6 @@ import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {DialogsPageType} from "../../redux/store";
-import {changeNewMessageBodyType, sendMessageType} from "../../redux/dialogs-reducer";
 
 type StateDialogsProps = {
     dialogsPage: DialogsPageType
@@ -11,10 +10,10 @@ type StateDialogsProps = {
     sendMessage: () => void
 }
 
-export const Dialogs = (props: StateDialogsProps) => {
+export const Dialogs = (props: any) => {
 
-    let dialogsElements = props.dialogsPage.dialogs.map((d) => <DialogItem name={d.name} id={d.id}/>)
-    let messagesElements = props.dialogsPage.messages.map((m) => <Message message={m.message}/>)
+    let dialogsElements = props.dialogsPage.dialogs.map((d: any) => <DialogItem name={d.name} id={d.id}/>)
+    let messagesElements = props.dialogsPage.messages.map((m: any) => <Message message={m.message}/>)
     let newMessageBody = props.dialogsPage.newMessageBody
 
     let onSendMessageClick = () => {

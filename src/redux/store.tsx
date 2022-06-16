@@ -7,7 +7,7 @@ type MessagesPropsType = {
     message: string
 }
 
-type DialogsPropsType = {
+export type DialogsPropsType = {
     id: string
     name: string
 }
