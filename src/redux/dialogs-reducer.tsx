@@ -7,34 +7,38 @@ export type changeNewMessageBodyType = ReturnType<typeof updateNewMessageBodyAct
 export type sendMessageType = ReturnType<typeof sendMessageActionCreator>
 
 let initialStore = {
-        dialogs: [
-            {id: '1', name: 'Oleg'},
-            {id: '2', name: 'Andrew'},
-            {id: '3', name: 'Svetlana'},
-            {id: '4', name: 'Sasha'},
-            {id: '5', name: 'Viktor'},
-            {id: '6', name: 'Valera'},
-        ],
-        messages: [
-            {id: '1', message: 'Hi'},
-            {id: '2', message: 'How are you'},
-            {id: '3', message: 'yo'},
-            {id: '4', message: 'yo'},
-            {id: '5', message: 'Hi'},
-        ],
-        newMessageBody: '',
-    }
+    dialogs: [
+        {id: '1', name: 'Oleg'},
+        {id: '2', name: 'Andrew'},
+        {id: '3', name: 'Svetlana'},
+        {id: '4', name: 'Sasha'},
+        {id: '5', name: 'Viktor'},
+        {id: '6', name: 'Valera'},
+    ],
+    messages: [
+        {id: '1', message: 'Hi'},
+        {id: '2', message: 'How are you'},
+        {id: '3', message: 'yo'},
+        {id: '4', message: 'yo'},
+        {id: '5', message: 'Hi'},
+    ],
+    newMessageBody: '',
+}
 
 export const dialogsReducer = (state: DialogsPageType = initialStore, action: ActionsTypes) => {
     switch (action.type) {
         case CHANGE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.body
-            return state
+            return {
+                ...state,
+                newMessageBody: action.body
+            }
         case SEND_MESSAGE:
             let body = state.newMessageBody
-            state.newMessageBody = ''
-            state.messages.push({id: '6', message: body},)
-            return state
+            return {
+                ...state,
+                newMessageBody: '',
+                messages: [...state.messages, {id: '6', message: body}]
+            }
         default:
             return state
     }
