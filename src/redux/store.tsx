@@ -1,6 +1,7 @@
 import {AddPostActionType, ChangeNewTextType, profileReducer} from "./profile-reducer";
 import {changeNewMessageBodyType, dialogsReducer, sendMessageType} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
+import {FollowActionType, SetUsersActionType, UnfollowActionType} from "./users-reducer";
 
 type MessagesPropsType = {
     id: string
@@ -35,7 +36,7 @@ export type StatePropsType = {
     sidebar: any
 }
 
-export type ActionsTypes = AddPostActionType | ChangeNewTextType | changeNewMessageBodyType | sendMessageType
+export type ActionsTypes = AddPostActionType | ChangeNewTextType | changeNewMessageBodyType | sendMessageType | FollowActionType | UnfollowActionType | SetUsersActionType
 
 export type  StoreType = {
     _state: StatePropsType
