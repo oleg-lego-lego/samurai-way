@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {followAC, setUsersAC, unfollowAC, UsersType} from "../../redux/users-reducer";
 import {RootStoreType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import Users, {UsersPropsTypeIP} from "./Users";
+import Users from "./Users";
 
 
 type MapStatePropsType = {
