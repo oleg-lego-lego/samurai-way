@@ -4,8 +4,22 @@ import {UsersType} from "../../redux/users-reducer";
 import axios from "axios";
 import userPhoto from "../../assets/images/user.png"
 
+type UsersPhotosType = {
+    small: null
+    large: null
+}
+
+type UsersPropsTypeIP = {
+    name: string
+    id: string
+    uniqueUrlName: null,
+    photos: UsersPhotosType
+    status: null
+    followed: boolean
+}
+
 type UsersPropsType = {
-    users: Array<any> // fixed any
+    users: Array<UsersPropsTypeIP> // fixed any
     //users: Array<UsersType>
     follow: (userID: string) => void
     unfollow: (userID: string) => void
