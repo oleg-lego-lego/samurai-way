@@ -40,7 +40,7 @@ type UsersAPIComponentPropsType = {
     setTotalUsersCount: (totalCount: number) => void
 }
 
-class UsersAPIComponent extends React.Component<UsersAPIComponentPropsType, UsersAPIComponentPropsType> {
+class UsersContainer extends React.Component<UsersAPIComponentPropsType, UsersAPIComponentPropsType> {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
@@ -121,4 +121,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent)
+export const UserContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
