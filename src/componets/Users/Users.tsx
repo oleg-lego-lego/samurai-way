@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './users.module.css'
-import {UsersPropsTypeIP} from "./UsersAPIComponent";
 import userPhoto from '../../assets/images/user.png'
+import {UsersPropsTypeIP} from "./UsersContainer";
 
 type UsersPropsType = {
     totalUsersCount: number
