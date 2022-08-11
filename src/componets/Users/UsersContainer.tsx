@@ -1,6 +1,13 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {followAC, setUsersAC, unfollowAC, UsersType} from "../../redux/users-reducer";
+import {
+    followAC,
+    setCurrentPageAC,
+    setTotalUsersCountAC,
+    setUsersAC,
+    unfollowAC,
+    UsersType
+} from "../../redux/users-reducer";
 import {RootStoreType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 import Users from "./Users";
@@ -8,20 +15,28 @@ import Users from "./Users";
 
 type MapStatePropsType = {
     users: any // fixed any
-        //Array<UsersType>
+    //Array<UsersType>
     //users: Array<UsersPropsTypeIP>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 type MapDispatchPropsType = {
     follow: (userID: string) => void
     unfollow: (userID: string) => void
     setUsers: (users: Array<UsersType>) => void
+    setCurrentPage: (currentPage: number) => void
+    setTotalUsersCount: (totalCount: number) => void
 }
 
 
-const mapStateToProps = (state: RootStoreType) : MapStatePropsType=> {
+const mapStateToProps = (state: RootStoreType): MapStatePropsType => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
     }
 }
 
@@ -33,11 +48,16 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
         unfollow: (userID: string) => {
             dispatch(unfollowAC(userID))
         },
-        setUsers: (users: any) => { // fixed any
+        setUsers: (users: Array<UsersType>) => { // fixed any
             dispatch(setUsersAC(users))
-        }
+        },
+        setCurrentPage: (currentPage: number) => {
+            dispatch(setCurrentPageAC(currentPage))
+        },
+        setTotalUsersCount: (totalCount: number) => {
+            dispatch(setTotalUsersCountAC(totalCount))
+        },
     }
 }
-
 
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
