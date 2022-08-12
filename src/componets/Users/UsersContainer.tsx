@@ -13,6 +13,7 @@ import {Dispatch} from "redux";
 import axios from "axios";
 import Users from "./Users";
 import reload from '../../assets/images/Reload.svg';
+import {Preloader} from "../common/Preloader/Preloader";
 
 
 type UsersPhotosType = {
@@ -68,7 +69,7 @@ class UsersContainer extends React.Component<UsersAPIComponentPropsType, UsersAP
     render() {
         return (
             <>
-                {this.props.isFetching ? <img src={reload}/> : null}
+                {this.props.isFetching ? <Preloader/> : null}
                 <Users
                     totalUsersCount={this.props.totalUsersCount}
                     pageSize={this.props.pageSize}
