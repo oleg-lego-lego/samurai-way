@@ -20,4 +20,8 @@ class ProfileContainer extends React.Component<any, any>{
     }
 }
 
-export default connect()(ProfileContainer);
+let mapStateToProps = (state: any) => ({
+    a: 134
+})
+
+export default connect(mapStateToProps, {})(ProfileContainer);

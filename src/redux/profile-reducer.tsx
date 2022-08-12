@@ -4,6 +4,7 @@ const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';
 
 
+
 export type AddPostActionType = ReturnType<typeof addPostActionCreator>
 export type ChangeNewTextType = ReturnType<typeof updateNewPostTextActionCreator>
 
