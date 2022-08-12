@@ -1,4 +1,4 @@
-import {AddPostActionType, ChangeNewTextType, profileReducer} from "./profile-reducer";
+import {AddPostActionType, ChangeNewTextType, profileReducer, SetUserProfileActionType} from "./profile-reducer";
 import {changeNewMessageBodyType, dialogsReducer, sendMessageType} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {
@@ -9,6 +9,7 @@ import {
     ToggleIsFetchingACActionType,
     UnfollowActionType
 } from "./users-reducer";
+import any = jasmine.any;
 
 type MessagesPropsType = {
     id: string
@@ -45,7 +46,7 @@ export type StatePropsType = {
 
 export type ActionsTypes = AddPostActionType | ChangeNewTextType | changeNewMessageBodyType
     | sendMessageType | FollowActionType | UnfollowActionType | SetUsersActionType
-    | CurrentPageACActionType | setTotalUsersCountACActionType | ToggleIsFetchingACActionType
+    | CurrentPageACActionType | setTotalUsersCountACActionType | ToggleIsFetchingACActionType | SetUserProfileActionType
 
 export type  StoreType = {
     _state: StatePropsType

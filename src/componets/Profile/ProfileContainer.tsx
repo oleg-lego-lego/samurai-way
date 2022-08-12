@@ -2,6 +2,7 @@ import React from 'react';
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
+import {setUserProfileActionCreator} from "../../redux/profile-reducer";
 
 class ProfileContainer extends React.Component<any, any>{
     componentDidMount() {
@@ -13,7 +14,7 @@ class ProfileContainer extends React.Component<any, any>{
 
     render() {
         return (
-            <Profile
+            <Profile profile={this.props.profile}
                 /*{...this.props}*/
             />
         )
@@ -21,7 +22,7 @@ class ProfileContainer extends React.Component<any, any>{
 }
 
 let mapStateToProps = (state: any) => ({
-    a: 134
+    profile: state.profilePage.profile
 })
 
-export default connect(mapStateToProps, {})(ProfileContainer);
+export default connect(mapStateToProps, {setUserProfileActionCreator})(ProfileContainer);

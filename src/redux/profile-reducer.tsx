@@ -1,4 +1,5 @@
 import {ActionsTypes, PostsPropsType, ProfilePageType,} from "./store";
+import any = jasmine.any;
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';
@@ -7,6 +8,7 @@ const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 export type AddPostActionType = ReturnType<typeof addPostActionCreator>
 export type ChangeNewTextType = ReturnType<typeof updateNewPostTextActionCreator>
+export type SetUserProfileActionType = ReturnType<typeof setUserProfileActionCreator>
 
 let initialState: ProfilePageType = {
     newPostText: '',
@@ -14,9 +16,10 @@ let initialState: ProfilePageType = {
         {id: 1, message: 'Hi, how are you?', likesCount: '12'},
         {id: 2, message: 'It is my first post', likesCount: '23'},
     ],
+    //profile: any ??
 }
 
-export const profileReducer = (state = initialState, action: ActionsTypes): ProfilePageType => {
+export const profileReducer = (state = initialState, action: ActionsTypes): ProfilePageType | any => { // fixed any
     switch (action.type) {
         case ADD_POST: {
             const newPost: PostsPropsType = {
@@ -34,6 +37,12 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Prof
             return {
                 ...state,
                 newPostText: action.newText
+            }
+        }
+        case SET_USER_PROFILE: {
+            return {
+                ...state,
+                profile: action.profile
             }
         }
         default:
