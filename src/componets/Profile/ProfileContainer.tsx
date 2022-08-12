@@ -1,16 +1,23 @@
 import React from 'react';
-import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {MyPostsContainer} from "./MyPosts/Post/MyPostsContainer";
+import {Profile} from "./Profile";
+import axios from "axios";
+import {connect} from "react-redux";
 
 class ProfileContainer extends React.Component<any, any>{
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+            .then(response => {
+                this.props.setUserProfile(response.data)
+            });
+    }
+
     render() {
         return (
-            <div>
-                <ProfileInfo/>
-                <MyPostsContainer/>
-            </div>
+            <Profile
+                /*{...this.props}*/
+            />
         )
     }
 }
 
-export default ProfileContainer;
+export default connect()(ProfileContainer);
