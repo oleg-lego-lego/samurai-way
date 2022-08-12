@@ -4,15 +4,14 @@ import {
     followAC,
     setCurrentPageAC,
     setTotalUsersCountAC,
-    setUsersAC, toggleIsFetchingAC,
+    setUsersAC,
+    toggleIsFetchingAC,
     unfollowAC,
     UsersType
 } from "../../redux/users-reducer";
 import {RootStoreType} from "../../redux/redux-store";
-import {Dispatch} from "redux";
 import axios from "axios";
 import Users from "./Users";
-import reload from '../../assets/images/Reload.svg';
 import {Preloader} from "../common/Preloader/Preloader";
 
 
@@ -115,27 +114,11 @@ const mapStateToProps = (state: RootStoreType): MapStatePropsType => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-    return {
-        follow: (userID: string) => {
-            dispatch(followAC(userID))
-        },
-        unfollow: (userID: string) => {
-            dispatch(unfollowAC(userID))
-        },
-        setUsers: (users: Array<UsersType>) => { // fixed any
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (currentPage: number) => {
-            dispatch(setCurrentPageAC(currentPage))
-        },
-        setTotalUsersCount: (totalCount: number) => {
-            dispatch(setTotalUsersCountAC(totalCount))
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetchingAC(isFetching))
-        },
-    }
-}
-
-export const UserContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export const UserContainer = connect(mapStateToProps, {
+    follow: followAC,
+    unfollow: unfollowAC,
+    setUsers: setUsersAC,
+    setCurrentPage: setCurrentPageAC,
+    setTotalUsersCount: setTotalUsersCountAC,
+    toggleIsFetching: toggleIsFetchingAC,
+})(UsersContainer)
