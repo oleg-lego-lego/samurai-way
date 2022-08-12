@@ -2,7 +2,7 @@ import {ActionsTypes, PostsPropsType, ProfilePageType,} from "./store";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';
-
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 
 export type AddPostActionType = ReturnType<typeof addPostActionCreator>
@@ -51,5 +51,12 @@ export const updateNewPostTextActionCreator = (newText: string) => {
     return {
         type: "CHANGE-NEW-TEXT",
         newText: newText
+    } as const
+}
+
+export const setUserProfileActionCreator = (profile: any) => { //fixed any
+    return {
+        type: "SET_USER_PROFILE",
+        profile: profile
     } as const
 }
