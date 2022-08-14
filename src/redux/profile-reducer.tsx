@@ -1,5 +1,4 @@
 import {ActionsTypes, PostsPropsType,} from "./store";
-import {FollowActionType} from "./users-reducer";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';

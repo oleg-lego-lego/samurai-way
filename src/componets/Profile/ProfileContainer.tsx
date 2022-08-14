@@ -2,7 +2,11 @@ import React from 'react';
 import {Profile} from "./Profile";
 import axios from "axios";
 import {connect} from "react-redux";
-import {setUserProfileAC, setUserProfileActionCreator} from "../../redux/profile-reducer";
+import {ProfileType, setUserProfileAC} from "../../redux/profile-reducer";
+
+type ProfileContainerPropsType = {
+    profile: ProfileType
+}
 
 class ProfileContainer extends React.Component<any, any>{
     componentDidMount() {
