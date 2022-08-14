@@ -1,36 +1,32 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    toggleIsFetchingAC,
-    unfollowAC,
-    UsersType
-} from "../../redux/users-reducer";
+import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, toggleIsFetchingAC, unfollowAC, UsersType} from "../../redux/users-reducer";
 import {RootStoreType} from "../../redux/redux-store";
 import axios from "axios";
 import Users from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 
-
 type UsersPhotosType = {
-    small: null
-    large: null
+    small: string
+    large: string
 }
 
 export type UsersPropsTypeIP = {
+    // name: string
+    // id: string
+    // uniqueUrlName: null,
+    // photos: UsersPhotosType
+    // status: null
+    // followed: boolean
+    id: number
     name: string
-    id: string
-    uniqueUrlName: null,
-    photos: UsersPhotosType
-    status: null
+    status: string
+    photos: Array<UsersPhotosType>
     followed: boolean
 }
 
 type UsersAPIComponentPropsType = {
-    users: Array<UsersPropsTypeIP>
+    users: UsersPropsTypeIP
     follow: (userID: string) => void
     unfollow: (userID: string) => void
     setUsers: (users: Array<UsersType>) => void
@@ -85,9 +81,7 @@ class UsersContainer extends React.Component<UsersAPIComponentPropsType, UsersAP
 
 
 type MapStatePropsType = {
-    users: any // fixed any
-    //Array<UsersType>
-    //users: Array<UsersPropsTypeIP>
+    users: UsersPropsTypeIP
     pageSize: number
     totalUsersCount: number
     currentPage: number

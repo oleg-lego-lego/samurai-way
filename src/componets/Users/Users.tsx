@@ -9,7 +9,7 @@ type UsersPropsType = {
     pageSize: number
     currentPage: any
     onPageChanged: (pageNumber: number) => void
-    users: Array<UsersPropsTypeIP>
+    users: UsersPropsTypeIP
     follow: (userID: string) => void
     unfollow: (userID: string) => void
 }
