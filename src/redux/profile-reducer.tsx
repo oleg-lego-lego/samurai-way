@@ -4,9 +4,9 @@ const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
-export type AddPostActionType = ReturnType<typeof addPostActionCreator>
-export type ChangeNewTextType = ReturnType<typeof updateNewPostTextActionCreator>
-export type SetUserProfileActionType = ReturnType<typeof setUserProfileActionCreator>
+export type addPostActionCreator = ReturnType<typeof addPostAC>
+export type updateNewPostTextActionCreator = ReturnType<typeof updateNewPostTextAC>
+export type setUserProfileActionCreator = ReturnType<typeof setUserProfileAC>
 
 export type MyPostsArrayProps = {
     id: number
@@ -84,20 +84,20 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Init
     }
 }
 
-export const addPostActionCreator = () => {
+export const addPostAC = () => {
     return {
         type: "ADD-POST"
     } as const
 }
 
-export const updateNewPostTextActionCreator = (newText: string) => {
+export const updateNewPostTextAC = (newText: string) => {
     return {
         type: "CHANGE-NEW-TEXT",
         newText: newText
     } as const
 }
 
-export const setUserProfileActionCreator = (profile: any) => { //fixed any
+export const setUserProfileAC = (profile: any) => { //fixed any
     return {
         type: "SET_USER_PROFILE",
         profile: profile

@@ -1,4 +1,9 @@
-import {AddPostActionType, ChangeNewTextType, profileReducer, SetUserProfileActionType} from "./profile-reducer";
+import {
+    addPostActionCreator,
+    profileReducer,
+    setUserProfileActionCreator,
+    updateNewPostTextActionCreator
+} from "./profile-reducer";
 import {changeNewMessageBodyType, dialogsReducer, sendMessageType} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {
@@ -38,14 +43,14 @@ export type DialogsPageType = {
 }
 
 export type StatePropsType = {
-    profilePage: ProfilePageType
+    profilePage: any //fixed
     dialogsPage: DialogsPageType
     sidebar: any
 }
 
-export type ActionsTypes = AddPostActionType | ChangeNewTextType | changeNewMessageBodyType
+export type ActionsTypes = addPostActionCreator | updateNewPostTextActionCreator | changeNewMessageBodyType
     | sendMessageType | FollowActionType | UnfollowActionType | SetUsersActionType
-    | CurrentPageACActionType | setTotalUsersCountACActionType | ToggleIsFetchingACActionType | SetUserProfileActionType
+    | CurrentPageACActionType | setTotalUsersCountACActionType | ToggleIsFetchingACActionType | setUserProfileActionCreator
 
 export type  StoreType = {
     _state: StatePropsType
