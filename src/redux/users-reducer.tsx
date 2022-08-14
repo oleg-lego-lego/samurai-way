@@ -1,5 +1,4 @@
 import {ActionsTypes,} from "./store";
-import {UsersPropsTypeIP} from "../componets/Users/UsersContainer";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -57,22 +56,12 @@ export const usersReducer = (state= initialState, action: ActionsTypes): UsersSt
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map((u) => {
-                    if (u.id === action.userID) {
-                        return {...u, followed: true}
-                    }
-                   return u
-                })
+                users: state.users.map(u => u.id === action.userID ? {...u, followed: true} : u)
             }
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map((u) => {
-                    if (u.id === action.userID) {
-                        return {...u, followed: false}
-                    }
-                    return u
-                })
+                users: state.users.map(u => u.id === action.userID ? {...u, followed: false} : u)
             }
         case SET_USERS:
             return {...state, users: action.users}
