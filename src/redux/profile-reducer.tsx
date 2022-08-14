@@ -1,12 +1,13 @@
 import {ActionsTypes, PostsPropsType,} from "./store";
+import {FollowActionType} from "./users-reducer";
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
-export type addPostActionCreator = ReturnType<typeof addPostAC>
-export type updateNewPostTextActionCreator = ReturnType<typeof updateNewPostTextAC>
-export type setUserProfileActionCreator = ReturnType<typeof setUserProfileAC>
+export type addPostActionType = ReturnType<typeof addPostAC>
+export type updateNewPostTextActionType = ReturnType<typeof updateNewPostTextAC>
+export type setUserProfileActionType = ReturnType<typeof setUserProfileAC>
 
 export type MyPostsArrayProps = {
     id: number
