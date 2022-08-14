@@ -1,5 +1,4 @@
 import {ActionsTypes, PostsPropsType, ProfilePageType,} from "./store";
-import any = jasmine.any;
 
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_TEXT = 'CHANGE-NEW-TEXT';

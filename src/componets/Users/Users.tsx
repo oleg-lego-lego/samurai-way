@@ -1,17 +1,17 @@
 import React from 'react';
 import s from './users.module.css'
 import userPhoto from '../../assets/images/user.png'
-import {UsersPropsTypeIP} from "./UsersContainer";
 import {NavLink} from "react-router-dom";
+import {UsersType} from "../../redux/users-reducer";
 
 type UsersPropsType = {
     totalUsersCount: number
     pageSize: number
-    currentPage: any
+    currentPage: number
     onPageChanged: (pageNumber: number) => void
-    users: UsersPropsTypeIP
-    follow: (userID: string) => void
-    unfollow: (userID: string) => void
+    users: UsersType[]
+    follow: (userID: number) => void
+    unfollow: (userID: number) => void
 }
 
 const Users = (props: UsersPropsType) => {

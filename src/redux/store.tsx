@@ -9,7 +9,6 @@ import {
     ToggleIsFetchingACActionType,
     UnfollowActionType
 } from "./users-reducer";
-import any = jasmine.any;
 
 type MessagesPropsType = {
     id: string

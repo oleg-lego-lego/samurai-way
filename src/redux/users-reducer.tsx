@@ -40,7 +40,6 @@ export type UsersStateType = {
     isFetching: boolean
 }
 
-
 let initialState: UsersStateType = {
     users: [],
     pageSize: 10,

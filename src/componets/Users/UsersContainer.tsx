@@ -6,33 +6,14 @@ import axios from "axios";
 import Users from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 
-type UsersPhotosType = {
-    small: string
-    large: string
-}
-
-export type UsersPropsTypeIP = {
-    // name: string
-    // id: string
-    // uniqueUrlName: null,
-    // photos: UsersPhotosType
-    // status: null
-    // followed: boolean
-    id: number
-    name: string
-    status: string
-    photos: Array<UsersPhotosType>
-    followed: boolean
-}
-
 type UsersAPIComponentPropsType = {
-    users: UsersPropsTypeIP
-    follow: (userID: string) => void
-    unfollow: (userID: string) => void
+    users: UsersType[]
+    follow: (userID: number) => void
+    unfollow: (userID: number) => void
     setUsers: (users: Array<UsersType>) => void
     pageSize: number
     totalUsersCount: number
-    currentPage: any // fixed any
+    currentPage: number
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
@@ -81,7 +62,7 @@ class UsersContainer extends React.Component<UsersAPIComponentPropsType, UsersAP
 
 
 type MapStatePropsType = {
-    users: UsersPropsTypeIP
+    users: UsersType[]
     pageSize: number
     totalUsersCount: number
     currentPage: number
@@ -89,8 +70,8 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    follow: (userID: string) => void
-    unfollow: (userID: string) => void
+    follow: (userID: number) => void
+    unfollow: (userID: number) => void
     setUsers: (users: Array<UsersType>) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalCount: number) => void
