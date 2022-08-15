@@ -40,7 +40,7 @@ export type ProfileType = {
     aboutMe: string
 }
 
-let initialState = {
+export let initialState = {
 //let initialState: ProfilePageType = {
     newPostText: '',
     posts: [
@@ -64,7 +64,7 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Init
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText: ''
+                //newPostText: ''
             }
         }
         case CHANGE_NEW_TEXT: {
@@ -97,7 +97,7 @@ export const updateNewPostTextAC = (newText: string) => {
     } as const
 }
 
-export const setUserProfileAC = (profile: any) => { //fixed any
+export const setUserProfileAC = (profile: ProfileType) => {
     return {
         type: "SET_USER_PROFILE",
         profile: profile
