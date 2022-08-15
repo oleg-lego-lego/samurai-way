@@ -15,6 +15,7 @@ export const MyPosts = (props: MyPostsTypeProps) => {
 
     let onAddPost = () => {
         props.addPost()
+        props.updateNewPostText('')
     }
 
     let newTextChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {

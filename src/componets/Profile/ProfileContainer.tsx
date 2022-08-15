@@ -10,7 +10,7 @@ type PathParamsType = {
 }
 
 type MapsStatePropsType = {
-    profile: ProfileType | null
+    profile: ProfileType
 }
 
 type MapDispatchPropsType = {
@@ -35,7 +35,7 @@ class ProfileContainer extends React.Component<any, PropsType> {
     render() {
         return (
             <Profile profile={this.props.profile}
-                /*{...this.props}*/
+                {...this.props}
             />
         )
     }
