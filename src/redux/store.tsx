@@ -1,19 +1,18 @@
-import {
-    addPostActionType,
-    profileReducer,
-    setUserProfileActionType,
-    updateNewPostTextActionType
-} from "./profile-reducer";
 import {changeNewMessageBodyType, dialogsReducer, sendMessageType} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {
     CurrentPageACActionType,
     FollowActionType,
     setTotalUsersCountACActionType,
-    SetUsersActionType,
-    ToggleIsFetchingACActionType,
+    SetUsersActionType, ToggleIsFetchingACActionType,
     UnfollowActionType
 } from "./users-reducer";
+import {
+    addPostActionType,
+    profileReducer,
+    setUserProfileActionType,
+    updateNewPostTextActionType
+} from "./profile-reducer";
 
 type MessagesPropsType = {
     id: string
@@ -48,13 +47,10 @@ export type StatePropsType = {
     sidebar: any
 }
 
-export type ActionsTypes = DialogsReducerAC |  ProfileReducerAC | UsersReducerAC
-
-
-type DialogsReducerAC = changeNewMessageBodyType | sendMessageType
-type ProfileReducerAC = addPostActionType | updateNewPostTextActionType | setUserProfileActionType
-type UsersReducerAC = FollowActionType | UnfollowActionType | SetUsersActionType | CurrentPageACActionType
- |                    setTotalUsersCountACActionType | ToggleIsFetchingACActionType
+export type ActionsTypes = changeNewMessageBodyType | sendMessageType
+    | addPostActionType | updateNewPostTextActionType | setUserProfileActionType
+    | FollowActionType | UnfollowActionType | SetUsersActionType | CurrentPageACActionType
+    |setTotalUsersCountACActionType | ToggleIsFetchingACActionType
 
 export type  StoreType = {
     _state: StatePropsType
