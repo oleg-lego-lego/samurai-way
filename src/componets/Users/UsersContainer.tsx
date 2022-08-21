@@ -5,6 +5,7 @@ import {
     setCurrentPageAC,
     setTotalUsersCountAC,
     setUsersAC,
+    toggleFollowingInProgressAC,
     toggleIsFetchingAC,
     unfollowAC,
     UsersType
@@ -27,9 +28,11 @@ type UsersAPIComponentPropsType = {
     setTotalUsersCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
     isFetching: boolean
+    toggleFollowingInProgress: (isFetching: boolean) => void
+    followingInProgress: boolean
 }
 
-class UsersContainer extends React.Component<UsersAPIComponentPropsType, UsersAPIComponentPropsType> {
+class UsersContainer extends React.Component<any, UsersAPIComponentPropsType> { //fixed any
     componentDidMount() {
         this.props.toggleIsFetching(true)
         UsersAPI.getUsers(this.props.currentPage, this.props.pageSize)
@@ -63,6 +66,8 @@ class UsersContainer extends React.Component<UsersAPIComponentPropsType, UsersAP
                     users={this.props.users}
                     follow={this.props.follow}
                     unfollow={this.props.unfollow}
+                    toggleFollowingInProgress={this.props.toggleFollowingInProgress}
+                    followingInProgress={this.props.followingInProgress}
                 />
             </>
         )
@@ -76,6 +81,7 @@ type MapStatePropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: boolean
 }
 
 // type MapDispatchPropsType = {
@@ -95,6 +101,7 @@ const mapStateToProps = (state: RootStoreType): MapStatePropsType => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
@@ -105,4 +112,5 @@ export const UserContainer = connect(mapStateToProps, {
     setCurrentPage: setCurrentPageAC,
     setTotalUsersCount: setTotalUsersCountAC,
     toggleIsFetching: toggleIsFetchingAC,
+    toggleFollowingInProgressAC: toggleFollowingInProgressAC
 })(UsersContainer)
