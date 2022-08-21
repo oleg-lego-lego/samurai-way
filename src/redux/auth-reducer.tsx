@@ -24,15 +24,17 @@ export type UsersType = {
 }
 
 export type UsersStateType = {
-    id: number | null,
-    email: string | null,
-    login: string | null,
+    id: number | null
+    email: string
+    login: string
+    isAuth: boolean
 }
 
 let initialState: UsersStateType = {
     id: null,
     email: '',
     login: '',
+    isAuth: false,
 }
 
 export const authReducer = (state = initialState, action: ActionsTypes) => {
@@ -40,15 +42,16 @@ export const authReducer = (state = initialState, action: ActionsTypes) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth: true
             }
         default:
             return state
     }
 }
 
-export const setAuthUserData = (userID: number, email: string, login: string) => {
-    return {type: 'SET_USER_DATA', data: {userID, email, login}} as const
+export const setAuthUserData = (id: number, email: string, login: string) => {
+    return {type: 'SET_USER_DATA', data: {id, email, login}} as const
 }
 
 
