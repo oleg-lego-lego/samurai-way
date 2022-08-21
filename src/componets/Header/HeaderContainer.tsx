@@ -6,7 +6,7 @@ import {setAuthUserData} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/redux-store";
 
 type MapStateToPropsType = {
-    login: null,
+    login: null | string,
     isAuth: boolean
 }
 
@@ -33,9 +33,11 @@ class HeaderContainer extends React.Component<any, AuthPropsType> {
     }
 }
 
-const mapStateToProps = (state: AppStateType) => {
-    isAuth: state.auth.isAuth
-    login: state.auth.login
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
+        isAuth: state.auth.isAuth,
+        login: state.auth.login,
+    }
 }
 
 export default connect(mapStateToProps, {setAuthUserData})(HeaderContainer)
