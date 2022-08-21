@@ -13,6 +13,7 @@ import {
     setUserProfileActionType,
     updateNewPostTextActionType
 } from "./profile-reducer";
+import {SetUserDataActionType} from "./auth-reducer";
 
 type MessagesPropsType = {
     id: string
@@ -50,7 +51,7 @@ export type StatePropsType = {
 export type ActionsTypes = changeNewMessageBodyType | sendMessageType
     | addPostActionType | updateNewPostTextActionType | setUserProfileActionType
     | FollowActionType | UnfollowActionType | SetUsersActionType | CurrentPageACActionType
-    |setTotalUsersCountACActionType | ToggleIsFetchingACActionType
+    |setTotalUsersCountACActionType | ToggleIsFetchingACActionType | SetUserDataActionType
 
 export type  StoreType = {
     _state: StatePropsType
