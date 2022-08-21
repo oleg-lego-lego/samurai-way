@@ -3,7 +3,7 @@ import {Header} from "./Header";
 import axios from "axios";
 import {connect} from "react-redux";
 import {setAuthUserData} from "../../redux/auth-reducer";
-import {AppStateType} from "../../redux/redux-store";
+import {RootStoreType} from "../../redux/redux-store";
 
 type MapStateToPropsType = {
     login: null | string,
@@ -33,7 +33,7 @@ class HeaderContainer extends React.Component<any, AuthPropsType> {
     }
 }
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+const mapStateToProps = (state: RootStoreType): MapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
         login: state.auth.login,
