@@ -5,3 +5,11 @@
 .header img {
     width: 140px;
 }
+
+.loginBLock {
+    float: right;
+}
+
+.loginBLock a {
+    color: white;
+}
