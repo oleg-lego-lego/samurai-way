@@ -83,14 +83,14 @@ type MapStatePropsType = {
     isFetching: boolean
 }
 
-type MapDispatchPropsType = {
-    follow: (userID: number) => void
-    unfollow: (userID: number) => void
-    setUsers: (users: Array<UsersType>) => void
-    setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
-}
+// type MapDispatchPropsType = {
+//     follow: (userID: number) => void
+//     unfollow: (userID: number) => void
+//     setUsers: (users: Array<UsersType>) => void
+//     setCurrentPage: (currentPage: number) => void
+//     setTotalUsersCount: (totalCount: number) => void
+//     toggleIsFetching: (isFetching: boolean) => void
+// }
 
 
 const mapStateToProps = (state: RootStoreType): MapStatePropsType => {
