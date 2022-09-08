@@ -50,7 +50,7 @@ let initialState: UsersStateType = {
     pageSize: 10,
     portionSize: 10,
     totalUsersCount: 0,
-    currentPage: 1,
+    currentPage: 3,
     isFetching: true,
     followingInProgress: []
 }
@@ -127,10 +127,21 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (
 
 export const followThunkCreator = (userId: number) => (dispatch: Dispatch) => {
     dispatch(toggleFollowingInProgressAC(true, userId))
-    UsersAPI.unfollow(userId)
+    UsersAPI.follow(userId)
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(followAC(userId))
+            }
+            dispatch(toggleFollowingInProgressAC(false, userId))
+        });
+}
+
+export const unfollowThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleFollowingInProgressAC(true, userId))
+    UsersAPI.unfollow(userId)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(unfollowAC(userId))
             }
             dispatch(toggleFollowingInProgressAC(false, userId))
         });
