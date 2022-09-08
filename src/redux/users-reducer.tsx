@@ -125,4 +125,15 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => (
         });
 }
 
+export const followThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleFollowingInProgressAC(true, userId))
+    UsersAPI.unfollow(userId)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(followAC(userId))
+            }
+            dispatch(toggleFollowingInProgressAC(false, userId))
+        });
+}
+
 

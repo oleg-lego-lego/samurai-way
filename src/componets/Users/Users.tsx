@@ -59,14 +59,14 @@ const Users = (props: UsersPropsType) => {
                                                 });
                                         }}>UnFollow</button>
                                         : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                                            props.toggleFollowingInProgress(true, u.id)
-                                            UsersAPI.unfollow(u.id)
-                                                .then(response => {
-                                                    if (response.data.resultCode === 0) {
-                                                        props.follow(u.id);
-                                                    }
-                                                    props.toggleFollowingInProgress(false, u.id)
-                                                        });
+                                            // props.toggleFollowingInProgress(true, u.id)
+                                            // UsersAPI.unfollow(u.id)
+                                            //     .then(response => {
+                                            //         if (response.data.resultCode === 0) {
+                                            //             props.follow(u.id);
+                                            //         }
+                                            //         props.toggleFollowingInProgress(false, u.id)
+                                            //             });
                                         }}>Follow</button>}
                                </div>
                             </span>
