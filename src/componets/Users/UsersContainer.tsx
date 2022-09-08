@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    followAC,
+    followAC, getUsersThunkCreator,
     setCurrentPageAC,
     setTotalUsersCountAC,
     setUsersAC,
@@ -112,5 +112,6 @@ export const UserContainer = connect(mapStateToProps, {
     setCurrentPage: setCurrentPageAC,
     setTotalUsersCount: setTotalUsersCountAC,
     toggleIsFetching: toggleIsFetchingAC,
-    toggleFollowingInProgressAC: toggleFollowingInProgressAC
+    toggleFollowingInProgressAC: toggleFollowingInProgressAC,
+    getUsersThunkCreator: getUsersThunkCreator
 })(UsersContainer)
