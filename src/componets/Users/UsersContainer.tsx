@@ -26,10 +26,10 @@ type UsersAPIComponentPropsType = {
     currentPage: number
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalCount: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
+    toggleIsFetching: (isFetching: boolean, userId: number) => void
     isFetching: boolean
     toggleFollowingInProgress: (isFetching: boolean) => void
-    followingInProgress: boolean
+    followingInProgress: Array<number>
 }
 
 class UsersContainer extends React.Component<any, UsersAPIComponentPropsType> { //fixed any
@@ -81,7 +81,7 @@ type MapStatePropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
-    followingInProgress: boolean
+    followingInProgress: Array<number>
 }
 
 // type MapDispatchPropsType = {
