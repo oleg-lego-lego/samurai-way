@@ -4,7 +4,9 @@ import {
     CurrentPageACActionType,
     FollowActionType,
     setTotalUsersCountACActionType,
-    SetUsersActionType, toggleFollowingInProgressACActionType, ToggleIsFetchingACActionType,
+    SetUsersActionType,
+    toggleFollowingInProgressACActionType,
+    ToggleIsFetchingACActionType,
     UnfollowActionType
 } from "./users-reducer";
 import {
