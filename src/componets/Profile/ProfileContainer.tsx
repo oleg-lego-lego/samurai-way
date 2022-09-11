@@ -11,7 +11,6 @@ type PathParamsType = {
 
 type MapsStatePropsType = {
     profile: ProfileType
-    isAuth: boolean
 }
 
 type MapDispatchPropsType = {
@@ -40,7 +39,6 @@ class ProfileContainer extends React.Component<any, PropsType> {
 let mapStateToProps = (state: any ): MapsStatePropsType => {
     return ({
         profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth,
     })
 }
 
