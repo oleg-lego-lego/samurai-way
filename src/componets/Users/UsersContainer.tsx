@@ -10,6 +10,8 @@ import {
 import {RootStoreType} from "../../redux/redux-store";
 import Users from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
+import {compose} from "redux";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 type UsersAPIComponentPropsType = {
@@ -73,9 +75,12 @@ const mapStateToProps = (state: RootStoreType): MapStatePropsType => {
     }
 }
 
-export const UserContainer = connect(mapStateToProps, {
-    followThunkCreator: followThunkCreator,
-    unfollowThunkCreator: unfollowThunkCreator,
-    setCurrentPage: setCurrentPageAC,
-    getUsersThunkCreator: getUsersThunkCreator,
-})(UsersContainer)
+export default compose<React.ComponentType>(
+    WithAuthRedirect,
+    connect(mapStateToProps, {
+        followThunkCreator: followThunkCreator,
+        unfollowThunkCreator: unfollowThunkCreator,
+        setCurrentPage: setCurrentPageAC,
+        getUsersThunkCreator: getUsersThunkCreator,
+    }),
+)(UsersContainer)
