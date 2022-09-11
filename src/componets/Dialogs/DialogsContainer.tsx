@@ -5,7 +5,7 @@ import {RootStoreType} from "../../redux/redux-store";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import {Redirect} from "react-router-dom";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 type MapStatePropsType = {
@@ -36,11 +36,4 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     }
 }
 
-export const AuthRedirectComponent = (props: MapStatePropsType & MapDispatchPropsType) => {
-    if (!props.isAuth) {
-        return <Redirect to={'/login'}/>
-    }
-    return <Dialogs {...props}/>
-}
-
-export const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
+export const DialogsContainer = WithAuthRedirect(connect(mapStateToProps, mapDispatchToProps)(Dialogs))
