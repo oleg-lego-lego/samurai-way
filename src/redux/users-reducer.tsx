@@ -79,8 +79,8 @@ export const usersReducer = (state = initialState, action: ActionsTypes): UsersS
             return {
                 ...state,
                 followingInProgress: action.isFetching
-                    ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id !== action.userId)
+                     ? [...state.followingInProgress, action.userId]
+                     : state.followingInProgress.filter(id => id !== action.userId)
             }
         default:
             return state
