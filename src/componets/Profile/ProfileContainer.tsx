@@ -12,7 +12,7 @@ type PathParamsType = {
 
 type MapsStatePropsType = {
     profile: ProfileType
-    status: number
+    status: string
 }
 
 type MapDispatchPropsType = {

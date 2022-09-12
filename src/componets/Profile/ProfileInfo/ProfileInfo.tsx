@@ -6,7 +6,7 @@ import {ProfileStatus} from "./ProfileStatus";
 
 type ProfileInfoPropsType = {
     profile:  ProfileType
-    status: (userId: number) => void
+    status: string
     updateStatus: (status: string) => void
 }
 

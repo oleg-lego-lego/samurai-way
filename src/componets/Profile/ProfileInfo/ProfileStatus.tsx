@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 
 type ProfileStatusPropsType = {
-    // status: (userId: number) => void
+    // status: string
     // updateStatus: (status: string) => void
 }
 
@@ -32,7 +32,7 @@ export class ProfileStatus extends React.Component<any, ProfileStatusPropsType> 
             <div>
                 {!this.state.editMode &&
                 <div>
-                    <span onDoubleClick={this.activateEditMode}>{this.props.status}</span>
+                    <span onDoubleClick={this.activateEditMode}>{this.props.status || 'No status'}</span>
                 </div>
                 }
                 {this.state.editMode &&
