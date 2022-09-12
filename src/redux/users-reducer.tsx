@@ -147,4 +147,3 @@ export const unfollowThunkCreator = (userId: number) => (dispatch: Dispatch) => 
         });
 }
 
-

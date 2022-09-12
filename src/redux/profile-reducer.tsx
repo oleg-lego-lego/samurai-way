@@ -45,7 +45,6 @@ export type ProfileType = {
 }
 
 export let initialState = {
-//let initialState: ProfilePageType = {
     newPostText: '',
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: '12'},
@@ -69,7 +68,6 @@ export const profileReducer = (state = initialState, action: ActionsTypes): Init
             return {
                 ...state,
                 posts: [...state.posts, newPost],
-                //newPostText: ''
             }
         }
         case CHANGE_NEW_TEXT: {
@@ -129,7 +127,7 @@ export const updateStatus = (status: string) => (dispatch: Dispatch) => {
     return ProfileAPI.updateStatus(status)
         .then(response => {
             if (response.data.resultCode === 0) {
-                dispatch(setStatusAC(response.data))
+                dispatch(setStatusAC(status))
             }
         });
 }
