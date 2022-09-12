@@ -1,7 +1,7 @@
 import React from 'react';
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {getUserProfile, ProfileType} from "../../redux/profile-reducer";
+import {getStatus, getUserProfile, ProfileType, updateStatus} from "../../redux/profile-reducer";
 import {RouteComponentProps, withRouter} from "react-router";
 import {compose} from "redux";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
@@ -12,6 +12,7 @@ type PathParamsType = {
 
 type MapsStatePropsType = {
     profile: ProfileType
+    status: number
 }
 
 type MapDispatchPropsType = {
@@ -28,23 +29,30 @@ class ProfileContainer extends React.Component<any, PropsType> {
             userId = '2';
         }
         this.props.getUserProfile(userId)
+        this.props.getStatus(userId)
     }
 
     render() {
         return (
-            <Profile profile={this.props.profile} {...this.props}/>
+            <Profile
+                profile={this.props.profile}
+                {...this.props}
+                status={this.props.status}
+                updateStatus={this.props.updateStatus}
+            />
         )
     }
 }
 
-let mapStateToProps = (state: any ): MapsStatePropsType => {
+let mapStateToProps = (state: any): MapsStatePropsType => {
     return ({
         profile: state.profilePage.profile,
+        status: state.profilePage.status
     })
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile}),
+    connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),
     withRouter,
     WithAuthRedirect
 )(ProfileContainer)

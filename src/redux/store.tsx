@@ -11,7 +11,7 @@ import {
 } from "./users-reducer";
 import {
     addPostActionType,
-    profileReducer,
+    profileReducer, setStatusActionType,
     setUserProfileActionType,
     updateNewPostTextActionType
 } from "./profile-reducer";
@@ -54,7 +54,7 @@ export type ActionsTypes = changeNewMessageBodyType | sendMessageType
     | addPostActionType | updateNewPostTextActionType | setUserProfileActionType
     | FollowActionType | UnfollowActionType | SetUsersActionType | CurrentPageACActionType
     | setTotalUsersCountACActionType | ToggleIsFetchingACActionType | SetUserDataActionType
-    | toggleFollowingInProgressACActionType
+    | toggleFollowingInProgressACActionType | setStatusActionType
 
 export type  StoreType = {
     _state: StatePropsType
