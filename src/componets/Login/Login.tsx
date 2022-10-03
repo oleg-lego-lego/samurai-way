@@ -4,6 +4,15 @@ export const Login = () => {
     return (
         <div>
             <h1>LOGIN</h1>
+            <LoginForm/>
+        </div>
+    );
+};
+
+
+export const LoginForm = () => {
+    return (
+        <div>
             <form>
                 <div>
                     <input placeholder={'Login'}/>
