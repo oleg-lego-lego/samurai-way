@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC} from 'react';
+import React, {FC} from 'react';
 import s from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {DialogItem} from "./DialogItem/DialogItem";
@@ -8,7 +8,6 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 type StateDialogsProps = {
     dialogsPage: DialogsPageType
-    updateNewMessageBody: (body: string) => void
     sendMessage: (newMessageBody: string) => void
 }
 
@@ -16,16 +15,6 @@ export const Dialogs = (props: StateDialogsProps) => {
 
     let dialogsElements = props.dialogsPage.dialogs.map((d) => <DialogItem name={d.name} key={d.id} id={d.id}/>)
     let messagesElements = props.dialogsPage.messages.map((m) => <Message message={m.message} key={m.id}/>)
-    let newMessageBody = props.dialogsPage.newMessageBody
-
-    // let onSendMessageClick = () => {
-    //     props.sendMessage()
-    // }
-
-    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.currentTarget.value
-        props.updateNewMessageBody(body)
-    }
 
     let addNewMessage = (value: any) => {
         props.sendMessage(value.newMessageBody)
@@ -46,7 +35,7 @@ export const Dialogs = (props: StateDialogsProps) => {
     )
 }
 
-const AddMessageForm: FC<InjectedFormProps<any>> = (props) => {
+const AddMessageForm: FC<InjectedFormProps<any>> = (props) => { //fixed any
     return (
         <form onSubmit={props.handleSubmit}>
             <div>

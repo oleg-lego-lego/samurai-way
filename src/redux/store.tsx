@@ -1,4 +1,4 @@
-import {changeNewMessageBodyType, dialogsReducer, sendMessageType} from "./dialogs-reducer";
+import {dialogsReducer, sendMessageType} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {
     CurrentPageACActionType,
@@ -11,7 +11,8 @@ import {
 } from "./users-reducer";
 import {
     addPostActionType,
-    profileReducer, setStatusActionType,
+    profileReducer,
+    setStatusActionType,
     setUserProfileActionType,
     updateNewPostTextActionType
 } from "./profile-reducer";
@@ -41,7 +42,6 @@ export type ProfilePageType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsPropsType>
     messages: Array<MessagesPropsType>
-    newMessageBody: string
 }
 
 export type StatePropsType = {
@@ -50,7 +50,7 @@ export type StatePropsType = {
     sidebar: any
 }
 
-export type ActionsTypes = changeNewMessageBodyType | sendMessageType
+export type ActionsTypes =  sendMessageType
     | addPostActionType | updateNewPostTextActionType | setUserProfileActionType
     | FollowActionType | UnfollowActionType | SetUsersActionType | CurrentPageACActionType
     | setTotalUsersCountACActionType | ToggleIsFetchingACActionType | SetUserDataActionType
@@ -88,8 +88,7 @@ const store: StoreType = {
                 {id: '3', message: 'yo'},
                 {id: '4', message: 'yo'},
                 {id: '5', message: 'Hi'},
-            ],
-            newMessageBody: '',
+            ]
         },
         sidebar: {}
     },
