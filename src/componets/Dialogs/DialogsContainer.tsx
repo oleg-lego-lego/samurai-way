@@ -14,7 +14,7 @@ type MapStatePropsType = {
 
 type MapDispatchPropsType = {
     updateNewMessageBody: (body: string) => void
-    sendMessage: () => void
+    sendMessage: (newMessageBody: string) => void
 }
 
 const mapStateToProps = (state: RootStoreType): MapStatePropsType => {
@@ -25,8 +25,8 @@ const mapStateToProps = (state: RootStoreType): MapStatePropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        sendMessage: () => {
-            dispatch(sendMessageActionCreator())
+        sendMessage: (newMessageBody: string) => {
+            dispatch(sendMessageActionCreator(newMessageBody))
         },
         updateNewMessageBody: (body: string) => {
             dispatch(updateNewMessageBodyActionCreator(body))

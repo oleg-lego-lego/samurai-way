@@ -33,10 +33,10 @@ export const dialogsReducer = (state: DialogsPageType = initialStore, action: Ac
                 newMessageBody: action.body
             }
         case SEND_MESSAGE:
-            let body = state.newMessageBody
+            let body = action.newMessageBody
             return {
                 ...state,
-                newMessageBody: '',
+                newMessageBody: '', // fixed del
                 messages: [...state.messages, {id: '6', message: body}]
             }
         default:
@@ -50,10 +50,8 @@ export const updateNewMessageBodyActionCreator = (body: string) => {
         type: 'CHANGE_NEW_MESSAGE_BODY',
         body: body
     } as const
-}
+} // del
 
-export const sendMessageActionCreator = () => {
-    return {
-        type: 'SEND_MESSAGE',
-    } as const
+export const sendMessageActionCreator = (newMessageBody: string) => {
+    return {type: 'SEND_MESSAGE', newMessageBody} as const
 }
