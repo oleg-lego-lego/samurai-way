@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {reduxForm, InjectedFormProps, Field} from "redux-form";
 
-export type FormDataType = {
+type FormDataType = {
     login: string
     password: string
     rememberMe: boolean
