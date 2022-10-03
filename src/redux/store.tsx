@@ -13,8 +13,7 @@ import {
     addPostActionType,
     profileReducer,
     setStatusActionType,
-    setUserProfileActionType,
-    updateNewPostTextActionType
+    setUserProfileActionType
 } from "./profile-reducer";
 import {SetUserDataActionType} from "./auth-reducer";
 
@@ -51,7 +50,7 @@ export type StatePropsType = {
 }
 
 export type ActionsTypes =  sendMessageType
-    | addPostActionType | updateNewPostTextActionType | setUserProfileActionType
+    | addPostActionType | setUserProfileActionType
     | FollowActionType | UnfollowActionType | SetUsersActionType | CurrentPageACActionType
     | setTotalUsersCountACActionType | ToggleIsFetchingACActionType | SetUserDataActionType
     | toggleFollowingInProgressACActionType | setStatusActionType
@@ -67,7 +66,6 @@ export type  StoreType = {
 const store: StoreType = {
     _state: {
         profilePage: {
-            newPostText: '',
             posts: [
                 {id: 1, message: 'Hi, how are you?', likesCount: '12'},
                 {id: 2, message: 'It is my first post', likesCount: '23'},
