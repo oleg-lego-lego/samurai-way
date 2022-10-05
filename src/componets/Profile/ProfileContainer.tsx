@@ -5,6 +5,7 @@ import {getStatus, getUserProfile, ProfileType, updateStatus} from "../../redux/
 import {RouteComponentProps, withRouter} from "react-router";
 import {compose} from "redux";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {RootStoreType} from "../../redux/redux-store";
 
 type PathParamsType = {
     userId: string,
