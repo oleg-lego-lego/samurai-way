@@ -8,7 +8,7 @@
 }
 
 .formSummaryError {
-    border: blue 1px solid;
+    border: red 1px solid;
     padding: 5px;
     color: #043d7a;
 }
